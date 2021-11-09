@@ -14,6 +14,9 @@ const reducer = (state = [], action) => {
   switch (action.type) {
     case "ADD_USER":
       return [...state, action.payload];
+
+    case "CLEAR":
+      return [];
   }
   return state;
 };
@@ -27,9 +30,14 @@ const store = Redux.createStore(reducer);
 const list = document.querySelector(".list");
 const btnAddUser = document.querySelector(".addUser");
 const userInput = document.querySelector(".userInput");
+const btnClear = document.querySelector(".clear");
 
 btnAddUser.addEventListener("click", () => {
   store.dispatch({ type: "ADD_USER", payload: userInput.value });
+});
+
+btnClear.addEventListener("click", () => {
+  store.dispatch({ type: "CLEAR" });
 });
 
 /**
